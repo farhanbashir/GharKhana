@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:weightSum="100"
+    tools:context="com.example.muhammadfarhanbashir.gharkhana.fragments.MainFragment">
+
+    <ImageView
+        android:layout_weight="60"
+        android:src="@drawable/logo"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:background="@drawable/round_button"
+        style="@style/mainBlackButton"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order Now"
+        android:onClick="gotoOrderNow"/>
+
+    <TextView
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-OR-"
+        android:textAlignment="center" />
+
+    <Button
+        android:background="@drawable/round_button"
+        style="@style/mainBlackButton"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_text"
+        android:onClick="gotoSignup"/>
+
+    <Button
+        android:background="@drawable/round_button"
+        style="@style/mainBlackButton"
+        android:layout_weight="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_text"
+        android:onClick="gotoLogin"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>

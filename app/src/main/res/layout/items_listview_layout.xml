@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:weightSum="5"
+    android:layout_height="wrap_content" android:background="@drawable/category_border">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/itemPageChefName"
+            android:id="@+id/chef_name_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chef Name"/>
+        <RatingBar
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+            android:id="@+id/ratingBar"
+            android:isIndicator="true"
+            android:rating="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0"
+            android:theme="@style/RatingBar"
+            />
+        <TextView
+            style="@style/itemPageItemName"
+            android:id="@+id/item_name_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Item Name"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_gravity="right"
+            style="@style/itemPagePrice"
+            android:id="@+id/price_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"/>
+        <Button
+            android:layout_gravity="right"
+            style="@style/itemPageButton"
+            android:id="@+id/order_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place order"/>
+    </LinearLayout>
+</LinearLayout>

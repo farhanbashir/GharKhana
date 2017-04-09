@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Ghar Khana</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_chef">ChefActivity</string>
+    <!--<string name="end_point">http://technyxsystems.com/demo/ghar_khana/api/</string>-->
+    <string name="end_point">http://192.168.8.100/ghar_khana/api/</string>
+    <string name="signup_text">Signup</string>
+    <string name="login_text">Login</string>
+    <string name="logout_text">Logout</string>
+    <string name="setting_text">Settings</string>
+    <string name="dishes_text">My Dishes</string>
+    <string name="search_dishes_text">Search Dishes</string>
+    <string name="add_dish_text">Add Dish</string>
+    <string name="previous_orders_text">Previous Orders</string>
+    <string name="my_orders_text">My Orders</string>
+    <string name="my_account_text">My Account</string>
+    <string name="password_text">Password</string>
+    <string name="ordernow_text">Order Now</string>
+    <string name="login_long_text">Please login to enter your account</string>
+    <string name="account_text">Dont have Account</string>
+    <string name="create_account_text">Create Account</string>
+    <string name="error_text">Some Error</string>
+    <string name="demo_chef_email">talha@hotmail.com</string>
+    <string name="demo_chef_password">click123</string>
+    <string name="demo_consumer_email">mahmood@technyxsystems.com</string>
+    <string name="demo_consumer_password">click123</string>
+    <string name="title_activity_consumer">ConsumerActivity</string>
+    <string name="consumer_roleid">3</string>
+    <string name="chef_roleid">2</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="nick_name">Nick Name</string>
+    <string name="mobile">Mobile No</string>
+    <string name="address">Address</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="role">Role</string>
+    <string name="chef">Chef</string>
+    <string name="consumer">Consumer</string>
+    <string name="item_name">Item Name</string>
+    <string name="description">Description</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_quantity">Item Quantity</string>
+    <string name="item_category">Item Category</string>
+    <string name="add_item">Add Item</string>
+</resources>

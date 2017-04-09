@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+    android:id="@+id/nav_my_account"
+    android:icon="@drawable/icon_user_black"
+    android:title="@string/my_account_text" >
+    </item>
+
+    <item
+        android:visible="false"
+        android:id="@+id/nav_search_dish"
+        android:icon="@drawable/icon_setting_black"
+        android:title="@string/search_dishes_text" ></item>
+
+    <item
+        android:visible="false"
+        android:id="@+id/nav_previous_orders"
+    android:icon="@drawable/icon_basket_black"
+    android:title="@string/previous_orders_text">
+    </item>
+
+    <item
+        android:visible="false"
+        android:id="@+id/nav_add_dish"
+        android:icon="@drawable/icon_setting_black"
+        android:title="@string/add_dish_text" ></item>
+
+    <item
+        android:visible="false"
+    android:id="@+id/nav_my_dishes"
+    android:icon="@drawable/icon_setting_black"
+    android:title="@string/dishes_text" ></item>
+
+    <item
+        android:visible="false"
+        android:id="@+id/nav_my_orders"
+        android:icon="@drawable/icon_setting_black"
+        android:title="@string/my_orders_text" ></item>
+
+    <item
+    android:id="@+id/nav_logout"
+    android:icon="@drawable/icon_logout_black"
+    android:title="@string/logout_text" ></item>
+
+</menu>

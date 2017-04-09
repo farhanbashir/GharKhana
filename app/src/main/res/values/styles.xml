@@ -1,0 +1,83 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/menuMainItem</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="header">
+        <item name="android:background" >@color/colorPrimary</item>
+    </style>
+    <style name="heading">
+        <item name="android:textStyle">bold</item>
+        <item name="android:color">@color/colorWhite</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="categoryNameEnglish">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="mainBlackButton">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorBlack</item>
+    </style>
+    <style name="mainGreenButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+    <style name="drawerTopHeading">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="menuMainItem">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="textNormal">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="textSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+    <style name="textNormalGreen">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="itemPageButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+    <style name="itemPageItemName">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="itemPageChefName">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/menuMainItem</item>
+    </style>
+    <style name="itemPagePrice">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/menuMainItem</item>
+    </style>
+</resources>
