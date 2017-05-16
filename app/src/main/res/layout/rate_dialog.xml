@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:paddingTop="16dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="Rate This Dish"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#666666"
+        android:layout_height="wrap_content" />
+
+
+    <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating"
+        android:isIndicator="false"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="5dp"
+        android:rating="0"
+        style="@style/Widget.MaterialRatingBar.RatingBar.Indicator" />
+
+
+</LinearLayout>
