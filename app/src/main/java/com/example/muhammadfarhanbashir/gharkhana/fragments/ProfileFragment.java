@@ -20,6 +20,7 @@ import com.example.muhammadfarhanbashir.gharkhana.interfaces.MyApi;
 import com.example.muhammadfarhanbashir.gharkhana.models.HeaderClass;
 import com.example.muhammadfarhanbashir.gharkhana.models.categories.CategoriesBasicClass;
 import com.example.muhammadfarhanbashir.gharkhana.models.login.LoginBasicClass;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -68,6 +69,8 @@ public class ProfileFragment extends Fragment {
         EditText address_textbox = (EditText) myView.findViewById(R.id.address_textbox);
         EditText email_textbox = (EditText) myView.findViewById(R.id.email_textbox);
 
+        TextView profile_notification_bar = (TextView) myView.findViewById(R.id.profile_notification_bar);
+
         Gson gson = new Gson();
         String user_string = SharedPreference.getInstance().getValue(getContext(), "user");
         LoginBasicClass user_details = gson.fromJson(user_string, LoginBasicClass.class);
@@ -77,6 +80,15 @@ public class ProfileFragment extends Fragment {
         phone_textbox.setText(user_details.contact_number);
         address_textbox.setText(user_details.address);
         email_textbox.setText(user_details.email);
+
+        if(user_details.role_id.equals(getResources().getString(R.string.consumer_roleid)))
+        {
+            profile_notification_bar.setText("You have registered as CONSUMER");
+        }
+        else
+        {
+            profile_notification_bar.setText("You have registered as CHEF");
+        }
 
         //update work
         update_button.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +155,13 @@ public class ProfileFragment extends Fragment {
                     LoginBasicClass user = SharedPreference.getInstance().getUserObject(getContext());
                     String user_id = user.user_id;
 
-                    Call<JsonObject> call = service.editUser(user_id, fname, lname, phone, email);
+                    String device_id = SharedPreference.getInstance().getValue(getContext(), "device_token");
+                    if(device_id.equals(""))
+                    {
+                        device_id = FirebaseInstanceId.getInstance().getToken();
+                        SharedPreference.getInstance().save(getContext(), "device_token", device_id);
+                    }
+                    Call<JsonObject> call = service.editUser(user_id, fname, lname, phone, email, address, device_id);
 
                     call.enqueue(new Callback<JsonObject>() {
                         @Override

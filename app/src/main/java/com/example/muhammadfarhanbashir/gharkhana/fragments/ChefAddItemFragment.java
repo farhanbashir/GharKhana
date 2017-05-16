@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import com.example.muhammadfarhanbashir.gharkhana.helpers.RestClient;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.SharedPreference;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.MySpinner;
 import com.example.muhammadfarhanbashir.gharkhana.interfaces.MyApi;
+import com.example.muhammadfarhanbashir.gharkhana.models.Categories;
 import com.example.muhammadfarhanbashir.gharkhana.models.HeaderClass;
 import com.example.muhammadfarhanbashir.gharkhana.models.categories.CategoriesBasicClass;
 import com.example.muhammadfarhanbashir.gharkhana.models.login.LoginBasicClass;
@@ -27,6 +29,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -43,7 +46,7 @@ public class ChefAddItemFragment extends Fragment {
     View myView;
     TextView title_textview;
     AppBarLayout main_header;
-    String category_id;
+    String category_id, parent_category_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +59,10 @@ public class ChefAddItemFragment extends Fragment {
         title_textview.setText("ADD ITEM");
         main_header.setVisibility(View.VISIBLE);
 
+        Bundle args = getArguments();
+        parent_category_id = args.get("selected_category_id").toString();
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         return myView;
     }
@@ -67,28 +74,34 @@ public class ChefAddItemFragment extends Fragment {
 
         Spinner dynamicSpinner = (Spinner) myView.findViewById(R.id.category_dropdown);
 
-        final Gson gson = new Gson();
-        String categories_string = SharedPreference.getInstance().getValue(getContext(), "categories");
-        final ArrayList<CategoriesBasicClass> categories = gson.fromJson(categories_string, new TypeToken<ArrayList<CategoriesBasicClass>>(){}.getType());
+//        final Gson gson = new Gson();
+//        String categories_string = SharedPreference.getInstance().getValue(getContext(), "categories");
+//        final ArrayList<CategoriesBasicClass> categories = gson.fromJson(categories_string, new TypeToken<ArrayList<CategoriesBasicClass>>(){}.getType());
 
-        String[] items = new String[categories.size()] ;
 
-        for(int i=0; i<categories.size(); i++)
+        Categories categories = new Categories();
+        final ArrayList<CategoriesBasicClass> children = categories.getAllChildren(parent_category_id);
+
+        String[] items = new String[children.size()] ;
+
+        for(int i=0; i<children.size(); i++)
         {
-            items[i] = categories.get(i).getName();
+            items[i] = children.get(i).getName();
         }
 
 
 
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+//                android.R.layout.simple_spinner_item, items);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_item, items);
+                R.layout.spinner_item_layout, items);
 
         dynamicSpinner.setAdapter(adapter);
 
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                category_id = categories.get(i).category_id;
+                category_id = children.get(i).category_id;
 
             }
 
@@ -103,17 +116,21 @@ public class ChefAddItemFragment extends Fragment {
             public void onClick(View view) {
 
                 int error = 0;
-                String item_name, item_description, item_price, item_quantity, chef_id;
+                String item_name, item_description, item_price, item_serving, chef_id, additional, time_taken;
 
                 EditText item_name_textbox = (EditText) myView.findViewById(R.id.item_name);
                 EditText item_description_textbox = (EditText) myView.findViewById(R.id.item_description);
                 EditText item_price_textbox = (EditText) myView.findViewById(R.id.item_price);
-                EditText item_quantity_textbox = (EditText) myView.findViewById(R.id.item_quantity);
+                EditText item_serving_textbox = (EditText) myView.findViewById(R.id.item_serving);
+                EditText additional_textbox = (EditText) myView.findViewById(R.id.additional);
+                EditText time_taken_textbox = (EditText) myView.findViewById(R.id.time_taken);
 
                 item_name = item_name_textbox.getText().toString();
                 item_description = item_description_textbox.getText().toString();
                 item_price = item_price_textbox.getText().toString();
-                item_quantity = item_quantity_textbox.getText().toString();
+                item_serving = item_serving_textbox.getText().toString();
+                additional = additional_textbox.getText().toString();
+                time_taken = time_taken_textbox.getText().toString();
 
                 LoginBasicClass user = SharedPreference.getInstance().getUserObject(getContext());
                 chef_id = user.user_id;
@@ -131,7 +148,7 @@ public class ChefAddItemFragment extends Fragment {
                     RestClient rest_client = new RestClient(end_point);
                     MyApi service = rest_client.getService().create(MyApi.class);
 
-                    Call<JsonObject> call = service.saveItem(category_id, chef_id, item_name, item_price, item_description, item_quantity);
+                    Call<JsonObject> call = service.saveItem(category_id, parent_category_id, chef_id, item_name, item_price, item_description, item_serving, additional, time_taken);
 
                     call.enqueue(new Callback<JsonObject>() {
                         @Override

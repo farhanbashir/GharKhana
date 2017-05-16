@@ -5,8 +5,45 @@
     android:orientation="vertical"
     tools:context="com.example.muhammadfarhanbashir.gharkhana.fragments.MainFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:layout_height="40dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:text="UPDATE"
+            android:textSize="12sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_height="36dp"
+            android:id="@+id/updateLocation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Update My Location:"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/categories_list"
+        android:paddingTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:scrollbars="none"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/colorWhite"

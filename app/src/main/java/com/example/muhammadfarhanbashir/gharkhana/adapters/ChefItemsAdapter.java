@@ -57,6 +57,9 @@ public class ChefItemsAdapter extends BaseAdapter {
         TextView item_description;
         TextView item_price;
         TextView item_date;
+        TextView item_serving;
+        TextView item_additional;
+        TextView item_time_taken;
     }
 
     @Override
@@ -86,6 +89,9 @@ public class ChefItemsAdapter extends BaseAdapter {
             holder.item_description = (TextView) view.findViewById(R.id.item_description);
             holder.item_price = (TextView) view.findViewById(R.id.item_price);
             holder.item_date = (TextView) view.findViewById(R.id.item_date);
+            holder.item_serving = (TextView) view.findViewById(R.id.item_serving);
+            holder.item_additional = (TextView) view.findViewById(R.id.item_additional);
+            holder.item_time_taken = (TextView) view.findViewById(R.id.item_time_taken);
 
             view.setTag(holder);
         } else {
@@ -95,6 +101,9 @@ public class ChefItemsAdapter extends BaseAdapter {
         holder.item_name.setText(mItems.get(position).getItem_name());
         holder.item_description.setText(mItems.get(position).getDescription());
         holder.item_price.setText("PKR "+mItems.get(position).getPrice());
+        holder.item_serving.setText("Serving: "+mItems.get(position).getServing());
+        holder.item_additional.setText("Additional: "+mItems.get(position).additional);
+        holder.item_time_taken.setText("Time: "+mItems.get(position).time_taken);
         holder.item_date.setText(MyUtils.formatMysqlDate(mItems.get(position).created));
 
         Button delete_item = (Button) view.findViewById(R.id.delete_item);

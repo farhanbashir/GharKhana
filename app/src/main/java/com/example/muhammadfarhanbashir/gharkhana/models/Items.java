@@ -1,5 +1,7 @@
 package com.example.muhammadfarhanbashir.gharkhana.models;
 
+import static android.icu.text.RelativeDateTimeFormatter.Direction.THIS;
+
 /**
  * Created by muhammadfarhanbashir on 02/03/2017.
  */
@@ -14,12 +16,17 @@ public class Items {
     public String created;
     public String updated;
     public String price;
-    public String quantity;
+    public String serving;
     public String chef_first_name;
     public String chef_last_name;
     public String chef_contact_number;
     public String latitude;
     public String longitude;
+    public String chef_review;
+    public String distance;
+    public String time_taken;
+    public String additional;
+    public String order_count;
 
     public String getChef_id()
     {
@@ -33,7 +40,15 @@ public class Items {
 
     public String getItem_name()
     {
-        return this.item_name;
+        String category_name = "";
+
+        Categories categories = new Categories();
+        category_name = categories.getCategoryName(this.category_id);
+        if(category_name.toLowerCase().equals("others") || category_name.toLowerCase().equals("other"))
+        {
+            category_name = "";
+        }
+        return this.item_name+" "+category_name;
     }
 
     public String getDescription()
@@ -51,9 +66,17 @@ public class Items {
         return this.price;
     }
 
-    public String getQuantity()
+    public String getPriceForConsumer()
     {
-        return this.quantity;
+        float price = Float.valueOf(this.price);
+        price = price + 50;
+
+        return String.valueOf(Math.round(price));
+    }
+
+    public String getServing()
+    {
+        return this.serving;
     }
 
     public String getChef_first_name()
@@ -80,4 +103,6 @@ public class Items {
     {
         return this.longitude;
     }
+
+    public String getChefReview() {return this.chef_review;}
 }

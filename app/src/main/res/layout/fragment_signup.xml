@@ -14,10 +14,42 @@
         tools:context="com.example.muhammadfarhanbashir.gharkhana.fragments.SignupFragment">
 
         <TextView
+            android:id="@+id/role_name_heading"
             style="@style/textNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/first_name"/>
+            android:text="@string/role"/>
+        <RadioGroup
+            android:layout_marginTop="10dp"
+            android:id="@+id/role_radio"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                style="@style/textSmall"
+                android:checked="true"
+                android:id="@+id/consumer_radio"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/consumer"/>
+            <RadioButton
+                style="@style/textSmall"
+                android:id="@+id/chef_radio"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/chef"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:paddingTop="10dp"
+            style="@style/textNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"/>
         <EditText
             android:padding="10dp"
             style="@style/textSmall"
@@ -28,12 +60,15 @@
             android:inputType="text"/>
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/lname_heading"
             android:paddingTop="10dp"
             style="@style/textNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/last_name"/>
+            android:text="Nick Name"/>
         <EditText
+            android:visibility="gone"
             android:padding="10dp"
             style="@style/textSmall"
             android:background="@drawable/border_bottom"
@@ -95,12 +130,25 @@
             <!--android:layout_height="1dp"-->
             <!--android:background="@color/colorBlack"/>-->
 
-        <TextView
-            style="@style/textNormal"
-            android:paddingTop="10dp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password"/>
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/textNormal"
+                android:paddingTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password"/>
+            <TextView
+                android:clickable="true"
+                android:paddingLeft="10dp"
+                android:id="@+id/show_hide_password"
+                android:text="(Show Password)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <EditText
             android:padding="10dp"
             style="@style/textSmall"
@@ -116,35 +164,6 @@
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="1dp"-->
             <!--android:background="@color/colorBlack"/>-->
-
-        <TextView
-            style="@style/textNormal"
-            android:paddingTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/role"/>
-        <RadioGroup
-            android:layout_marginTop="10dp"
-            android:id="@+id/role_radio"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                style="@style/textSmall"
-                android:checked="true"
-                android:id="@+id/consumer_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/consumer"/>
-            <RadioButton
-                style="@style/textSmall"
-                android:id="@+id/chef_radio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chef"/>
-
-        </RadioGroup>
 
         <Button
             android:layout_marginTop="10dp"

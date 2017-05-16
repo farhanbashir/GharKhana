@@ -20,6 +20,7 @@ import com.example.muhammadfarhanbashir.gharkhana.helpers.RestClient;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.MySpinner;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.SharedPreference;
 import com.example.muhammadfarhanbashir.gharkhana.interfaces.MyApi;
+import com.example.muhammadfarhanbashir.gharkhana.models.Categories;
 import com.example.muhammadfarhanbashir.gharkhana.models.HeaderClass;
 import com.example.muhammadfarhanbashir.gharkhana.models.Items;
 import com.example.muhammadfarhanbashir.gharkhana.models.categories.CategoriesBasicClass;
@@ -44,7 +45,7 @@ public class ItemsFragment extends Fragment {
     TextView title_textview;
     ImageView toolbar_image;
     AppBarLayout main_header;
-    String selected_category_id;
+    String selected_category_id, selected_category;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,18 +59,16 @@ public class ItemsFragment extends Fragment {
         Bundle args = getArguments();
 
         selected_category_id = args.get("selected_category_id").toString();
+        Categories categories = new Categories();
+        selected_category = categories.getCategoryName(selected_category_id);
 
-        Gson gson = new Gson();
-        String categories_string = SharedPreference.getInstance().getValue(getContext(), "categories");
-        ArrayList<CategoriesBasicClass> categories = gson.fromJson(categories_string, new TypeToken<ArrayList<CategoriesBasicClass>>(){}.getType());
-
-        for(int i=0; i<categories.size(); i++)
+        if(!SharedPreference.getInstance().getLoggedIn(getContext()))
         {
-            if(categories.get(i).category_id.equals(selected_category_id))
-            {
-                title_textview.setText(categories.get(i).getName());
-            }
+            SharedPreference.getInstance().save(getContext(), "selected_category_id", selected_category_id);
         }
+        //selected_category = args.get("selected_category").toString();
+
+        title_textview.setText(selected_category);
 
 
 
@@ -83,7 +82,7 @@ public class ItemsFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                fragmentManager.beginTransaction().replace(R.id.content_frame, new CategoriesFragment()).addToBackStack(null).commit();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, new TestFragment()).addToBackStack(null).commit();
 
             }
         });
@@ -99,7 +98,6 @@ public class ItemsFragment extends Fragment {
     {
         final MySpinner spinner = new MySpinner(getContext());
         spinner.getProgressDialog().show();
-
 
         String end_point = getResources().getString(R.string.end_point);
 
@@ -155,7 +153,7 @@ public class ItemsFragment extends Fragment {
 
     public void setItems(final ArrayList<Items> items)
     {
-        ItemsAdapter itemsAdapter = new ItemsAdapter(getContext(), items);
+        ItemsAdapter itemsAdapter = new ItemsAdapter(getActivity(), items);
         ListView listview = (ListView) myView.findViewById(R.id.items_list);
 
         listview.setAdapter(itemsAdapter);

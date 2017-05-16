@@ -21,21 +21,45 @@ public class OrderHistory {
     public String customer_last_name;
     public String item_name;
     public String price;
+    public String intimate_order;
+    public String address;
+    public String category_id;
+    public String parent_category_id;
 
     public String getName()
     {
-        return this.item_name;
+        String category_name = "";
+
+        Categories categories = new Categories();
+        category_name = categories.getCategoryName(this.category_id);
+        if(category_name.toLowerCase().equals("others") || category_name.toLowerCase().equals("other"))
+        {
+            category_name = "";
+        }
+        return this.item_name+" "+category_name;
     }
+
+    public String getChefName(){return this.chef_first_name+" "+this.chef_last_name;}
 
     public String getPrice()
     {
         return this.price;
     }
 
+    public String getPriceForConsumer()
+    {
+        float price = Float.valueOf(this.price);
+        price = price + 50;
+
+        return String.valueOf(Math.round(price));
+    }
+
     public String getQuantity()
     {
         return this.quantity;
     }
+
+    public String getOrderDate() {return this.created;}
 
     public String getCustomerName()
     {

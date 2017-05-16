@@ -1,16 +1,20 @@
 package com.example.muhammadfarhanbashir.gharkhana.helpers;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.muhammadfarhanbashir.gharkhana.HomeActivity;
 import com.example.muhammadfarhanbashir.gharkhana.R;
@@ -24,6 +28,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 
@@ -38,6 +44,39 @@ public class MyUtils {
     {
 //        view.startAnimation(AnimationUtils.loadAnimation(context,
 //                R.anim.slide_down));
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        final InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            if (activity.getCurrentFocus() != null) {
+                inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+            }
+        }
+    }
+
+    public static String getCompleteAddressString(Context context, double lat, double lng) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                Log.w("My loction address", "" + strReturnedAddress.toString());
+            } else {
+                Log.w("My loction address", "No Address returned!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.w("My loction address", "Canont get Address!");
+        }
+        return strAdd;
     }
 
     public static boolean ifNetworkPresent(Context context)
@@ -92,7 +131,11 @@ public class MyUtils {
 //        {
 //            fragmentManager.popBackStack();
 //        }
+        String email = SharedPreference.getInstance().getValue(context, "email");
+        String password = SharedPreference.getInstance().getValue(context, "password");
         SharedPreference.getInstance().clearSharedPreference(context);
+        SharedPreference.getInstance().save(context, "email", email);
+        SharedPreference.getInstance().save(context, "password", password);
         Intent intent = new Intent(context, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);

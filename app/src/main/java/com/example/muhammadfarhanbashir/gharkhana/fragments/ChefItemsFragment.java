@@ -97,7 +97,7 @@ public class ChefItemsFragment extends Fragment {
 
         LoginBasicClass user_detail = SharedPreference.getInstance().getUserObject(getContext());
 
-        Call<JsonObject> call = service.chefItems(user_detail.user_id);
+        Call<JsonObject> call = service.getItems(user_detail.user_id);
 
         call.enqueue(new Callback<JsonObject>() {
             @Override

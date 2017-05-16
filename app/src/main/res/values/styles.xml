@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -31,13 +31,18 @@
         <item name="android:textSize">20sp</item>
     </style>
     <style name="categoryNameEnglish">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">16sp</item>
     </style>
     <style name="mainBlackButton">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:background">@color/colorBlack</item>
+    </style>
+    <style name="smallGreenButton">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
     <style name="mainGreenButton">
         <item name="android:textSize">16sp</item>

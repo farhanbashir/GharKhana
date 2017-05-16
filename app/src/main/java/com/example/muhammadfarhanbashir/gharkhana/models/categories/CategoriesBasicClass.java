@@ -11,6 +11,7 @@ public class CategoriesBasicClass {
     public String created;
     public String updated;
     public String parent_id;
+    public String item_count;
 
 
 

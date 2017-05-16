@@ -11,41 +11,45 @@
     tools:context="com.example.muhammadfarhanbashir.gharkhana.fragments.MainFragment">
 
     <ImageView
-        android:layout_weight="60"
+        android:layout_weight="70"
         android:src="@drawable/logo"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
-        android:background="@drawable/round_button"
-        style="@style/mainBlackButton"
-        android:layout_weight="10"
+        android:background="@drawable/round_button_green"
+        style="@style/mainGreenButton"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Order Now"
+        android:textSize="18sp"
         android:onClick="gotoOrderNow"/>
 
     <TextView
-        android:layout_weight="10"
+        android:layout_weight="15"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:text="-OR-"
-        android:textAlignment="center" />
+        />
 
     <Button
-        android:background="@drawable/round_button"
-        style="@style/mainBlackButton"
-        android:layout_weight="10"
+        android:background="@drawable/round_button_green"
+        style="@style/mainGreenButton"
+        android:textSize="18sp"
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/signup_text"
         android:onClick="gotoSignup"/>
 
     <Button
-        android:background="@drawable/round_button"
-        style="@style/mainBlackButton"
-        android:layout_weight="10"
+        android:background="@drawable/round_button_green"
+        style="@style/mainGreenButton"
+        android:layout_weight="5"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login_text"

@@ -1,51 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:orientation="horizontal" android:layout_width="match_parent"
-android:padding="10dp"
-android:weightSum="5"
-android:layout_height="wrap_content" android:background="@drawable/category_border">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="wrap_content" android:background="@drawable/category_border">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_weight="3"
-    android:layout_width="0dp"
-    android:layout_height="match_parent">
     <TextView
-        style="@style/itemPageChefName"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        style="@style/textNormalGreen"
         android:id="@+id/item_name"
-        android:layout_width="match_parent"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         />
+    <Button
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/item_name"
+        style="@style/smallGreenButton"
+        android:id="@+id/delete_item"
+        android:layout_width="wrap_content"
+        android:text="Delete Item"
+        android:layout_height="34dp" />
+
     <TextView
         style="@style/textSmall"
         android:id="@+id/item_date"
+        android:layout_below="@id/delete_item"
+        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_below="@id/item_name"
+        android:layout_alignParentLeft="true"
+        style="@style/textSmall"
+        android:id="@+id/item_price"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/item_price"
+        style="@style/textSmall"
+        android:id="@+id/item_serving"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:layout_toLeftOf="@+id/item_serving"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/item_date"
+        style="@style/textSmall"
+        android:id="@+id/item_time_taken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/item_serving"
+        style="@style/textSmall"
+        android:id="@+id/item_additional"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
     <TextView
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/item_additional"
         style="@style/textSmall"
         android:id="@+id/item_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Item Name"/>
-</LinearLayout>
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_weight="2"
-    android:layout_width="0dp"
-    android:layout_height="match_parent">
-    <TextView
-        style="@style/itemPagePrice"
-        android:id="@+id/item_price"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         />
-    <Button
-        android:layout_gravity="right"
-        style="@style/itemPageButton"
-        android:id="@+id/delete_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Item"/>
-</LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

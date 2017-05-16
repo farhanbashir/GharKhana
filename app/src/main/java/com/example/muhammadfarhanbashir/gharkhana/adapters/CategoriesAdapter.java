@@ -62,7 +62,7 @@ public class CategoriesAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         // Set the results into TextViews
-        holder.category_name.setText(mCategories.get(position).getName());
+        holder.category_name.setText(mCategories.get(position).getName()+" ( "+mCategories.get(position).item_count+" ) ");
 
 
         return view;

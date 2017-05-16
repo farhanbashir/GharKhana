@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -11,64 +11,67 @@
     tools:context="com.example.muhammadfarhanbashir.gharkhana.fragments.LoginFragment">
 
     <ImageView
-        android:layout_weight="40"
-        android:src="@drawable/logo"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="40"
+        android:src="@drawable/logo" />
 
     <TextView
         style="@style/textSmall"
-        android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="@string/login_long_text"/>
+        android:layout_weight="10"
+        android:text="@string/login_long_text"
+        android:textAlignment="center" />
 
     <EditText
+        android:id="@+id/email_textbox"
         style="@style/textSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="10"
         android:hint="@string/prompt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/email_textbox"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
+        android:id="@+id/password_textbox"
         style="@style/textNormal"
+        android:fontFamily="sans-serif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="10"
         android:hint="@string/password_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/password_textbox"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <Button
-        android:background="@drawable/round_button_green"
+        android:id="@+id/login_button"
         style="@style/mainGreenButton"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/login_button"
+        android:background="@drawable/round_button_green"
         android:onClick="login"
-        android:text="@string/login_text"/>
+        android:text="@string/login_text"
+        android:textSize="16sp" />
 
     <TextView
-        android:layout_marginTop="10dp"
         style="@style/textNormal"
-        android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/account_text"
-        android:textAlignment="center"/>
+        android:layout_marginTop="10dp"
+        android:layout_weight="10"
+        android:gravity="bottom|center"
+        android:text="@string/account_text" />
+
     <TextView
         style="@style/textNormalGreen"
-        android:layout_weight="10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/create_account_text"
-        android:onClick="gotoSignup"
+        android:layout_marginTop="3dp"
+        android:layout_weight="10"
         android:clickable="true"
-        android:textAlignment="center"/>
+        android:onClick="gotoSignup"
+        android:text="@string/create_account_text"
+        android:textAlignment="center" />
 
 </LinearLayout>

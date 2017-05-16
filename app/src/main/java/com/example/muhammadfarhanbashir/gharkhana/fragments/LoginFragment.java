@@ -1,10 +1,17 @@
 package com.example.muhammadfarhanbashir.gharkhana.fragments;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -34,6 +41,7 @@ import java.util.ArrayList;
 
 import static com.example.muhammadfarhanbashir.gharkhana.HomeActivity.fragmentManager;
 
+import im.delight.android.location.SimpleLocation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +57,8 @@ public class LoginFragment extends Fragment {
     EditText password_textbox;
     Button login_button;
     AppBarLayout main_header;
+    SimpleLocation location;
+    private static final int PERMISSION_REQUEST = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,12 +67,76 @@ public class LoginFragment extends Fragment {
         myView = inflater.inflate(R.layout.fragment_login, container, false);
         main_header = (AppBarLayout) getActivity().findViewById(R.id.main_header);
         main_header.setVisibility(View.GONE);
+        location = new SimpleLocation(getActivity());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (getActivity().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSION_REQUEST);
+            } else {
+                if (!location.hasLocationEnabled()) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            getFragmentManager().popBackStack();
+                        }
+                    });
+                    builder.setMessage("Ghar Khana wants your location to proceed, you need to turn on your GPS.");
+                    builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.show();
+
+                }
+            }
+        } else {
+            if (!location.hasLocationEnabled()) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        getFragmentManager().popBackStack();
+                    }
+                });
+                builder.setMessage("Ghar Khana wants your location to proceed, you need to turn on your GPS.");
+                builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+                builder.show();
+
+            }
+        }
         return myView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState)
     {
+        email_textbox = (EditText) myView.findViewById(R.id.email_textbox);
+        password_textbox = (EditText) myView.findViewById(R.id.password_textbox);
+
+        if(!SharedPreference.getInstance().getValue(getContext(), "email").equals(""))
+        {
+            email_textbox.setText(SharedPreference.getInstance().getValue(getContext(), "email"));
+        }
+
+        if(!SharedPreference.getInstance().getValue(getContext(), "password").equals(""))
+        {
+            password_textbox.setText(SharedPreference.getInstance().getValue(getContext(), "password"));
+        }
 
         login_button = (Button) getActivity().findViewById(R.id.login_button);
 
@@ -70,12 +144,9 @@ public class LoginFragment extends Fragment {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email;
-                String password;
+                final String email;
+                final String password;
                 int error = 0;
-
-                email_textbox = (EditText) myView.findViewById(R.id.email_textbox);
-                password_textbox = (EditText) myView.findViewById(R.id.password_textbox);
 
                 email = email_textbox.getText().toString();
                 password = password_textbox.getText().toString();
@@ -95,6 +166,7 @@ public class LoginFragment extends Fragment {
                 if(error == 0)
                 {
                     final MySpinner spinner = new MySpinner(getContext());
+
                     spinner.getProgressDialog().show();
 
 
@@ -122,13 +194,13 @@ public class LoginFragment extends Fragment {
                                     JsonObject body = response.body().getAsJsonObject("body");
                                     JsonObject info = body.getAsJsonObject("info");
                                     LoginBasicClass user = gson.fromJson(info.get("user"), LoginBasicClass.class);
-                                    ArrayList<CategoriesBasicClass> categories = gson.fromJson(info.get("categories"), new TypeToken<ArrayList<CategoriesBasicClass>>(){}.getType());
 
                                     //saving data in share preference
                                     //SharedPreference.getInstance().clearSharedPreference(getContext());
+                                    SharedPreference.getInstance().save(getContext(), "email", email);
+                                    SharedPreference.getInstance().save(getContext(), "password", password);
                                     SharedPreference.getInstance().removeValue(getContext(), "guest");
                                     SharedPreference.getInstance().save(getContext(), "user", gson.toJson(user));
-                                    SharedPreference.getInstance().save(getContext(), "categories", gson.toJson(categories));
                                     SharedPreference.getInstance().setLoggedIn(getContext(), true);
 
                                     //clear the history and start new home activity
@@ -199,4 +271,40 @@ public class LoginFragment extends Fragment {
 
 
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+
+        if (requestCode == 1) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                if (!location.hasLocationEnabled()) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            getFragmentManager().popBackStack();
+                        }
+                    });
+                    builder.setMessage("Ghar Khana wants your location to proceed, you need to turn on your GPS.");
+                    builder.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(intent);
+                        }
+                    });
+                    builder.show();
+
+                }
+
+            }
+        }
+
+    }
+
 }
