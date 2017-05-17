@@ -19,7 +19,7 @@
 -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
-    android:padding="0dp"
+    android:padding="20dp"
     android:background="@drawable/border_bottom"
     style="@style/textNormal"
     android:singleLine="true"

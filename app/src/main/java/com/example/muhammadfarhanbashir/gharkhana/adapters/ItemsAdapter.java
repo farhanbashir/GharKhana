@@ -2,6 +2,7 @@ package com.example.muhammadfarhanbashir.gharkhana.adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,6 +20,7 @@ import com.example.muhammadfarhanbashir.gharkhana.R;
 import com.example.muhammadfarhanbashir.gharkhana.fragments.SignupFragment;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.MySpinner;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.MyUtils;
+import com.example.muhammadfarhanbashir.gharkhana.helpers.RangeTimePickerDialog;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.RestClient;
 import com.example.muhammadfarhanbashir.gharkhana.helpers.SharedPreference;
 import com.example.muhammadfarhanbashir.gharkhana.interfaces.MyApi;
@@ -278,7 +280,7 @@ public class ItemsAdapter extends BaseAdapter {
 
     }
 
-    private void deliveryTimeDialog(final int position, final Button order_button)
+    /*private void deliveryTimeDialog(final int position, final Button order_button)
     {
         final android.support.v7.app.AlertDialog.Builder deliveryDialogBuilder = new android.support.v7.app.AlertDialog.Builder(mContext);
         LayoutInflater inflater = mContext.getLayoutInflater();
@@ -318,6 +320,47 @@ public class ItemsAdapter extends BaseAdapter {
 
 
 
+    }*/
+
+    private void deliveryTimeDialog(final int position, final Button order_button)
+    {
+        final Calendar mcurrentTime = Calendar.getInstance();
+        final int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        final int minute = mcurrentTime.get(Calendar.MINUTE);
+        final RangeTimePickerDialog mTimePicker;
+        mTimePicker = new RangeTimePickerDialog(mContext, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                String AM_PM ;
+                if(selectedHour < 12) {
+                    AM_PM = "AM";
+                } else {
+                    AM_PM = "PM";
+                }
+
+                delivery_time_string = selectedHour+":"+minute;
+
+            }
+        }, hour, minute, true);//true = 24 hour time
+        mTimePicker.setButton(RangeTimePickerDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(mContext, "Cancel: " + delivery_time_string, Toast.LENGTH_LONG).show();
+                mTimePicker.dismiss();
+            }
+        });
+        mTimePicker.setButton(RangeTimePickerDialog.BUTTON_POSITIVE, "Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                mTimePicker.dismiss();
+                makeOrder(position, order_button);
+                //Toast.makeText(mContext, "Submit: " + delivery_time_string, Toast.LENGTH_LONG).show();
+            }
+        });
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.setMin(hour, minute);
+        mTimePicker.setCancelable(false);
+        mTimePicker.show();
     }
 
     private void rateDialog(final int position, final String customer_id) {

@@ -200,13 +200,23 @@ public class SignupFragment extends Fragment {
             });
         }
 
-        TextView show_hide_password = (TextView) myView.findViewById(R.id.show_hide_password);
+        final TextView show_hide_password = (TextView) myView.findViewById(R.id.show_hide_password);
         final EditText password_textbox = (EditText) myView.findViewById(R.id.password_textbox);
 
         show_hide_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                password_textbox.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+
+                if(view.getTag().toString().equals("show")) {
+                    password_textbox.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    show_hide_password.setTag("hide");
+                    show_hide_password.setText("(Hide Password)");
+                } else {
+                    password_textbox.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    show_hide_password.setTag("show");
+                    show_hide_password.setText("(Show Password)");
+                }
+
 
                 password_textbox.setSelection(password_textbox.getText().length());
 

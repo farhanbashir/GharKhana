@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "442852157210",
+    "firebase_url": "https://gharkhana-57e43.firebaseio.com",
+    "project_id": "gharkhana-57e43",
+    "storage_bucket": "gharkhana-57e43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442852157210:android:c5c0285af0b8c5ae",
+        "android_client_info": {
+          "package_name": "com.example.muhammadfarhanbashir.gharkhana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442852157210-av3olrvha1p5hn0u74ijoc1gt3431lpc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.muhammadfarhanbashir.gharkhana",
+            "certificate_hash": "145c99a5e6774242f8e98c6b42d2d29663a414a7"
+          }
+        },
+        {
+          "client_id": "442852157210-jti7mn1q25tpu9aj3j44kgcbr6gp7d8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiLva3pAyJfSly0b2KAmYKQ53edxHIjsA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442852157210-jti7mn1q25tpu9aj3j44kgcbr6gp7d8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -95,7 +95,7 @@ public class ChefAddItemFragment extends Fragment {
 //                android.R.layout.simple_spinner_item, items);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 R.layout.spinner_item_layout, items);
-
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_layout);
         dynamicSpinner.setAdapter(adapter);
 
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
